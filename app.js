@@ -46,9 +46,9 @@ function checkQuadrant(x, y) {
     return "Quadrant 3";
   } else if (x > 0 && y < 0) {
     return "Quadrant 4";
-  } else if (x == 0 && y != 0) {
-    return "X Axis";
   } else if (x != 0 && y == 0) {
+    return "X Axis";
+  } else if (x == 0 && y != 0) {
     return "Y Axis";
   } else {
     return "Origin";
@@ -100,6 +100,18 @@ To stay below your data plan, use no more than 2.93 GB/day.
 */
 
 function dataUsageFeedback(planLimit, day, usage) {
+  if (day === 0)
+  {
+    console.log("ATTENTION: Day cannot be equal to zero");
+    return null;
+  }
+
+  if (day === 30)
+  {
+    console.log("ATTENTION: Day cannot be equal to 30");
+    return null;
+  }
+  
   let periodLength = 30;
   let currentAvg = usage / day;
   let projectedAvg = planLimit / periodLength;
@@ -126,4 +138,4 @@ continuing this usage, you'll end up using ${
   } GB/day.`);
 }
 
-dataUsageFeedback(50, 10, 25);
+dataUsageFeedback(50, 30, 25);
